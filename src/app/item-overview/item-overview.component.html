@@ -1,7 +1,17 @@
 <main>
   <section>
     <h3 class="section-title">Items</h3>
-    <ul *ngFor="let item of (items|async)!" class="card-list">
+
+    <div class="form-group">
+      <label for="name" class="form-label">Search</label>
+      <input id="name"
+             name="name"
+             class="form-control"
+             placeholder="Filter by name..."
+             [(ngModel)]="searchText">
+    </div>
+
+    <ul *ngFor="let item of (items|async)! | nameFilter: searchText" class="card-list">
       <li class="card">
         <div class="card-title">{{item.name}}</div>
         <img class="card-image" src="assets/img/item-image.png" alt="item image">
